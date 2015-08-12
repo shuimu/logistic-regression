@@ -19,37 +19,65 @@
     </section>
 
     <section class="main-content">
-      <p>关于LR（线性回归），有蛮多自己的思考的，现在一一记录下来，作为感悟。
-线性回归简单看来，就是最小化损失函数。损失函数可以有很多的形式，比如：Loss = sum[ (f(xi) - y)^2 for i in (1, n) ] 这样的形式是符合最大似然的形式。
-假设f(xi) = wx+b的形式，即线性的形式，那么 Loss = sum[ (wx+b-y)^2 for i in (1, n) ]，如果采用sgd的优化方法，对其求偏导得到：
-对w求偏导：Loss'w = (wx+b-y)x
-对b求偏导：Loss'b = (wx+b-y)
-那么得到更新公式：
-w' = w + Loss'w<em>alpha
-b' = b + Loss'b</em>alpha
-其中，alpha是学习率，公式化简即：
-w' = w + (wx+b-y)x<em>alpha
-b' = b + (wx+b-y)</em>alpha
-考虑多个feature的情况，就是：
-w1' = w1 + (wx+b-y)x1<em>alpha
-w2' = w2 + (wx+b-y)x2</em>alpha
-...
-wn' = wn + (wn+b-y)xn<em>alpha
-其中，b'可以看做xi=1的情况。
-考虑成为向量的情况，
-w = w - (wx+b-y)</em>x*alpha</p>
+      <p>关于LR（线性回归），有蛮多自己的思考的，现在一一记录下来，作为感悟。</p>
 
-<p>关于LR（逻辑回归），即在线性回归的基础之上，加入了逻辑函数sigmoid函数，也是DNN中的激活函数，也即我的英文名的由来，函数为：
-Loss = sum[ yi<em>log(yi-f(xi) + (1-yi)</em>log(f(xi)) ] for i in (1, n)
-它是符合sigmoid到yi的距离作为概率p的最大似然，这里简单验证一下，
-sigmoid(x) = 1 / ( 1+ e^-x )
-likelihood = product[ yi<em>(yi-f(xi) + (1-yi)</em>f(xi) ] for i in (1,n)
-取log之后有，
-loglikelihood = sum[ yi<em>log(yi-f(xi) + (1-yi)</em>log(f(xi))] for i in (1, n)
-接下来和线性回归一样的方法，直接考虑多个feature的情况：
-likelihood = sum[ yi<em>log(sigmoid(wx))+(1-yi)</em>log(1-sigmoid(wx)) ] for i in (1,n)
-这个推倒还是蛮复杂的，最终结果是：
-likelihood'wi = (y-f(x))*x</p>
+<p>线性回归简单看来，就是最小化损失函数。损失函数可以有很多的形式，比如：Loss = sum[ (f(xi) - y)^2 for i in (1, n) ] 这样的形式是符合最大似然的形式。</p>
+
+<p>假设f(xi) = wx+b的形式，即线性的形式，那么 Loss = sum[ (wx+b-y)^2 for i in (1, n) ]，如果采用sgd的优化方法，对其求偏导得到：</p>
+
+<p>对w求偏导：Loss'w = (wx+b-y)x</p>
+
+<p>对b求偏导：Loss'b = (wx+b-y)</p>
+
+<p>那么得到更新公式：</p>
+
+<p>w' = w + Loss'w*alpha</p>
+
+<p>b' = b + Loss'b*alpha</p>
+
+<p>其中，alpha是学习率，公式化简即：</p>
+
+<p>w' = w + (wx+b-y)x*alpha</p>
+
+<p>b' = b + (wx+b-y)*alpha</p>
+
+<p>考虑多个feature的情况，就是：</p>
+
+<p>w1' = w1 + (wx+b-y)x1*alpha</p>
+
+<p>w2' = w2 + (wx+b-y)x2*alpha</p>
+
+<p>...</p>
+
+<p>wn' = wn + (wn+b-y)xn*alpha</p>
+
+<p>其中，b'可以看做xi=1的情况。</p>
+
+<p>考虑成为向量的情况，</p>
+
+<p>w = w - (wx+b-y)<em>x</em>alpha</p>
+
+<p>关于LR（逻辑回归），即在线性回归的基础之上，加入了逻辑函数sigmoid函数，也是DNN中的激活函数，也即我的英文名的由来，函数为：</p>
+
+<p>Loss = sum[ yi<em>log(yi-f(xi) + (1-yi)</em>log(f(xi)) ] for i in (1, n)</p>
+
+<p>它是符合sigmoid到yi的距离作为概率p的最大似然，这里简单验证一下，</p>
+
+<p>sigmoid(x) = 1 / ( 1+ e^-x )</p>
+
+<p>likelihood = product[ yi<em>(yi-f(xi) + (1-yi)</em>f(xi) ] for i in (1,n)</p>
+
+<p>取log之后有，</p>
+
+<p>loglikelihood = sum[ yi<em>log(yi-f(xi) + (1-yi)</em>log(f(xi))] for i in (1, n)</p>
+
+<p>接下来和线性回归一样的方法，直接考虑多个feature的情况：</p>
+
+<p>likelihood = sum[ yi<em>log(sigmoid(wx))+(1-yi)</em>log(1-sigmoid(wx)) ] for i in (1,n)</p>
+
+<p>这个推倒还是蛮复杂的，最终结果是：</p>
+
+<p>likelihood'wi = (y-f(x))*x</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/shuimu/logistic-regression">Logistic-regression</a> is maintained by <a href="https://github.com/shuimu">shuimu</a>.</span>
